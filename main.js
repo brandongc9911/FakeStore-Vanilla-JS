@@ -113,7 +113,7 @@ const showProducts = (products)=>{
             let totalGeneral = totales.reduce((a,b) => a + b,0)
             countContent.innerHTML = count += 1
             totalContent.innerHTML = `$${totalGeneral.toLocaleString("en")}`;
-            addToCard(cart)
+            addCard(cart)
 
         })
         button.innerText = "Add to card"
@@ -126,8 +126,7 @@ const showProducts = (products)=>{
 
 
 
-const addToCard = (products)=> {
-    // console.log(products);
+const addCard = (products)=> {
     const contentListShopping = document.querySelector('.content-listShopping')
     removeHTML(contentListShopping)
     products.forEach(product => {
@@ -189,11 +188,12 @@ const deleteProduct = (product)=> {
     cart = [...filterProduct]
     
     const newTotalGeneral = filterProduct.reduce((total, p) => total + p.total, 0);
+    if(newTotalGeneral === 0){
+        totales = []
+        console.log(totales);
+    }
     totalContent.innerHTML = `$${newTotalGeneral.toLocaleString("en")}`;
-    addToCard(filterProduct);
-   
-
-    
+    addCard(filterProduct);
 }
 
 const removeHTML = (html)=> {
